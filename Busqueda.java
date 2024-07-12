@@ -32,17 +32,17 @@ public class Busqueda extends JFrame{
                     String sql = "select * from usuario where cedula=?";
                     PreparedStatement pst = conecta.prepareStatement(sql);
                     pst.setString(1, cedula_buscar0);
+                    ResultSet rs = pst.executeQuery();
 
-                    ResultSet resultado = pst.executeQuery();
+                    StringBuilder datos = new StringBuilder("<html>");
 
 
-                    int ced = pst.executeUpdate();
-
-                    if (resultado.next()){
+                    if (rs.next()){
                         System.out.println("Paciente encontrado");
                         JOptionPane.showMessageDialog(null,"Paciente Encontrado", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
-                        visualiza_datos.setText(resultado.getString("nombre"));
+                        datos.append("</html>");
+                        visualiza_datos.setText(datos.toString());
 
                         //visualiza_datos.setText(toString(datos));
 
